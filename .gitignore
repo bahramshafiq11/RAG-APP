@@ -1,0 +1,18 @@
+# Virtual environment (large, and everyone creates their own)
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Streamlit local settings
+.streamlit/secrets.toml
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Your personal PDFs (remove this line if you want to include sample PDFs)
+*.pdf
