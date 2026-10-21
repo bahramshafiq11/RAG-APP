@@ -19,9 +19,10 @@ import streamlit as st
 # ---------------- Settings (try changing these later!) ----------------
 EMBED_MODEL = "nomic-embed-text"  # Ollama embedding model (run: ollama pull nomic-embed-text)
 LLM_MODEL = "qwen3.5:9b"          # must match a NAME from `ollama list`
-CHUNK_SIZE = 200                  # words per chunk
-OVERLAP = 40                      # words shared between neighbouring chunks
-TOP_K = 4                         # how many chunks to give the LLM
+# Starting values for the sidebar sliders
+DEFAULT_CHUNK_SIZE = 200          # words per chunk
+DEFAULT_TOP_K = 4                 # how many chunks to give the LLM
+OVERLAP_RATIO = 0.2               # neighbouring chunks share 20% of their words
 
 
 # ---------------- Step 1: Read PDFs ----------------
@@ -32,17 +33,18 @@ def extract_pages(file_bytes):
 
 
 # ---------------- Step 2: Chunk the text ----------------
-def chunk_pages(pages, filename):
+def chunk_pages(pages, filename, chunk_size):
     """Split each page into overlapping word chunks, remembering where each came from."""
     chunks = []
-    step = CHUNK_SIZE - OVERLAP
+    overlap = int(chunk_size * OVERLAP_RATIO)
+    step = chunk_size - overlap
     for page_num, text in pages:
         words = text.split()
         for start in range(0, len(words), step):
-            piece = " ".join(words[start:start + CHUNK_SIZE])
+            piece = " ".join(words[start:start + chunk_size])
             if piece.strip():
                 chunks.append({"text": piece, "page": page_num, "source": filename})
-            if start + CHUNK_SIZE >= len(words):
+            if start + chunk_size >= len(words):
                 break
     return chunks
 
@@ -60,7 +62,7 @@ def embed(texts, batch_size=32):
 
 
 # ---------------- Step 4: Search ----------------
-def search(question, chunks, vectors, k=TOP_K):
+def search(question, chunks, vectors, k):
     """Find the k chunks most similar in meaning to the question."""
     q = embed([question])[0]
     scores = vectors @ q                      # cosine similarity with every chunk
@@ -85,7 +87,9 @@ Answer:"""
 
 
 def ask_llm(prompt):
-    response = ollama.chat(model=LLM_MODEL, messages=[{"role": "user", "content": prompt}], think=False)
+    # think=False skips Qwen's hidden "thinking" step so answers come back faster
+    response = ollama.chat(model=LLM_MODEL, messages=[{"role": "user", "content": prompt}],
+                           think=False)
     return response["message"]["content"]
 
 
@@ -94,29 +98,47 @@ st.set_page_config(page_title="Chat With Your Documents", page_icon="📄")
 st.title("📄 Chat With Your Documents")
 
 # session_state keeps data alive between button clicks
-for key, default in {"chunks": [], "vectors": None, "messages": []}.items():
+for key, default in {"chunks": [], "vectors": None, "messages": [],
+                     "processed_chunk_size": None}.items():
     if key not in st.session_state:
         st.session_state[key] = default
 
 with st.sidebar:
     st.header("1. Upload PDFs")
     files = st.file_uploader("Choose PDF files", type="pdf", accept_multiple_files=True)
+
+    # Slider: st.slider(label, min, max, starting value, step)
+    chunk_size = st.slider("Chunk size (words)", 50, 500, DEFAULT_CHUNK_SIZE, 50,
+                           help="Smaller = more precise search. Bigger = more context per chunk.")
+
     if st.button("Process documents", disabled=not files):
         with st.spinner("Reading and embedding your documents..."):
             all_chunks = []
             for f in files:
-                all_chunks += chunk_pages(extract_pages(f.read()), f.name)
+                all_chunks += chunk_pages(extract_pages(f.read()), f.name, chunk_size)
             if all_chunks:
                 try:
                     st.session_state.vectors = embed([c["text"] for c in all_chunks])
                     st.session_state.chunks = all_chunks
                     st.session_state.messages = []
+                    st.session_state.processed_chunk_size = chunk_size
                     st.success(f"Ready! {len(all_chunks)} chunks from {len(files)} file(s).")
                 except Exception as e:
                     st.error(f"Embedding failed. Is Ollama running, and did you run "
                              f"`ollama pull {EMBED_MODEL}`? Error: {e}")
             else:
                 st.error("No text found. Scanned PDFs need OCR first.")
+
+    # Chunk size only takes effect when documents are processed, so remind the user
+    processed = st.session_state.processed_chunk_size
+    if processed is not None and processed != chunk_size:
+        st.warning(f"Your documents were processed with chunk size {processed}. "
+                   "Click **Process documents** again to use the new size.")
+
+    st.header("Settings")
+    # TOP_K takes effect on the very next question, no re-processing needed
+    top_k = st.slider("Chunks to retrieve (TOP_K)", 1, 10, DEFAULT_TOP_K,
+                      help="How many chunks the AI reads before answering.")
     show_sources = st.checkbox("Show retrieved chunks", value=True)
 
 st.header("2. Ask a question")
@@ -135,7 +157,7 @@ if question:
         with st.chat_message("user"):
             st.markdown(question)
 
-        hits = search(question, st.session_state.chunks, st.session_state.vectors)
+        hits = search(question, st.session_state.chunks, st.session_state.vectors, top_k)
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 try:
