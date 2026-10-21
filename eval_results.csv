@@ -1,0 +1,43 @@
+top_k,question,search_found_page,answer_correct,retrieved_pages,seconds,answer
+1,In which year was Nimbus Coffee Co. founded?,True,True,[1],7.0,"Nimbus Coffee Co. was founded in 2011 (nimbus_employee_handbook.pdf, page 1)."
+1,Who founded the company?,True,True,[1],6.1,"The company was founded by Sara Malik and Omar Khan (nimbus_employee_handbook.pdf, page 1)."
+1,How many cafés does the company run?,True,True,[1],7.5,"The company runs 14 cafés across Islamabad, Lahore, and Karachi. (nimbus_employee_handbook.pdf, page 1)"
+1,Where is the company's roastery?,True,True,[1],7.0,"The company's roastery is located in Rawalpindi. (nimbus_employee_handbook.pdf, page 1)"
+1,What app do staff use to clock in and out?,True,True,[2],8.2,"Staff use the **BrewTime** app on their phone to clock in and out. (nimbus_employee_handbook.pdf, page 2)"
+1,What time does the evening shift finish?,True,True,[2],12.2,"The evening shift finishes at 10:00 pm, as it runs from 2:00 pm to 10:00 pm (nimbus_employee_handbook.pdf, page 2)."
+1,How many days of paid annual leave do full-time employees get?,True,True,[3],11.0,"Full-time employees at Nimbus Coffee Co. receive **18 days** of paid annual leave each year.
+
+Source: [nimbus_employee_handbook.pdf, page 3]"
+1,How long is parental leave for the primary caregiver?,True,True,[3],7.5,"Primary caregivers receive 16 weeks of fully paid parental leave (nimbus_employee_handbook.pdf, page 3)."
+1,On which day of the month are salaries paid?,True,True,[4],13.5,"Salaries are paid by bank transfer on the 25th of every month. If the 25th falls on a weekend, they are paid on the Friday before (nimbus_employee_handbook.pdf, page 4)."
+1,What discount do staff get on food and drinks?,True,True,[4],8.9,"Staff get a 30% discount on all food and drinks at any Nimbus café (nimbus_employee_handbook.pdf, page 4)."
+1,Which company provides health insurance?,True,True,[4],14.6,"Based on the provided context, the company that provides health insurance is **CareFirst**. The text states that ""Health insurance from our partner, CareFirst..."" starts after the probation period.
+
+Source: (nimbus_employee_handbook.pdf, page 4)"
+1,What is the name of the training course for new baristas?,True,True,[5],9.0,"The training course for new baristas is called ""Bean to Cup"". This information is found in [nimbus_employee_handbook.pdf, page 5]."
+1,What are the levels of latte art certificate?,True,True,[5],7.6,"The levels of the latte art certificate are Bronze, Silver, and Gold (nimbus_employee_handbook.pdf, page 5)."
+1,What is the maximum temperature for steaming milk?,True,True,[6],7.6,"The maximum temperature for steaming milk is 65°C. (nimbus_employee_handbook.pdf, page 6)"
+1,Who should accidents be reported to?,True,True,[6],8.1,"Accidents should be reported to the company safety officer, Bilal Ahmed. (nimbus_employee_handbook.pdf, page 6)"
+1,Does the company offer a free gym membership?,,True,[4],13.3,"I couldn't find that in your documents. The provided context mentions a free drink per shift, a discount on café items, and health insurance information from CareFirst, but it does not contain any information regarding a free gym membership."
+1,What is the company's annual revenue?,,True,[4],9.8,I couldn't find that in your documents. The provided context mentions employee allowances and team bonuses but does not contain information about the company's annual revenue.
+1,What is the capital of Australia?,,True,[1],3.0,I couldn't find that in your documents.
+4,In which year was Nimbus Coffee Co. founded?,True,True,"[1, 5, 5, 5]",7.9,"Nimbus Coffee Co. was founded in 2011. (nimbus_employee_handbook.pdf, page 1)"
+4,Who founded the company?,True,True,"[1, 1, 1, 6]",6.5,"The company was founded by Sara Malik and Omar Khan (nimbus_employee_handbook.pdf, page 1)."
+4,How many cafés does the company run?,True,True,"[1, 2, 1, 1]",10.6,The company runs 14 cafés. This information is found in the document *nimbus_employee_handbook.pdf* on page 1 (mentioned twice in the context).
+4,Where is the company's roastery?,True,True,"[1, 1, 1, 5]",6.8,"The company's roastery is located in Rawalpindi. (nimbus_employee_handbook.pdf, page 1)"
+4,What app do staff use to clock in and out?,True,True,"[2, 2, 2, 6]",6.8,"Staff use the BrewTime app to clock in and out. (nimbus_employee_handbook.pdf, page 2)"
+4,What time does the evening shift finish?,True,True,"[2, 2, 2, 2]",23.3,"The evening shift finishes at **10:00 pm**.
+
+This is stated in the document where it lists the two shifts: ""the morning shift from 6:00 am to 2:00 pm or the evening shift from 2:00 pm to 10:00 pm"" (nimbus_employee_handbook.pdf, page 2)."
+4,How many days of paid annual leave do full-time employees get?,True,True,"[3, 3, 3, 4]",13.2,"Full-time employees at Nimbus Coﬀee Co. receive 18 days of paid annual leave each year, according to the Employee Handbook 2026 (nimbus_employee_handbook.pdf, page 3)."
+4,How long is parental leave for the primary caregiver?,True,True,"[3, 3, 3, 4]",9.9,"According to the document, the primary caregiver receives 16 weeks of fully paid parental leave. (nimbus_employee_handbook.pdf, page 3)"
+4,On which day of the month are salaries paid?,True,True,"[4, 4, 3, 2]",12.8,"Salaries are paid by bank transfer on the 25th of every month, or on the Friday before if the 25th falls on a weekend (nimbus_employee_handbook.pdf, page 4)."
+4,What discount do staff get on food and drinks?,True,True,"[4, 4, 1, 4]",8.7,"Staff members get a 30% discount on all food and drinks at any Nimbus café. (nimbus_employee_handbook.pdf, page 4)"
+4,Which company provides health insurance?,True,True,"[4, 3, 1, 3]",19.7,"Health insurance is provided by CareFirst, which is described as Nimbus Coffee Co.'s partner in the document. This information can be found on page 4 of nimbus_employee_handbook.pdf (file: nimbus_employee_handbook.pdf, page 4). The handbook states that ""Health insurance from our partner, CareFirst, starts after the probation period..."""
+4,What is the name of the training course for new baristas?,True,True,"[5, 5, 5, 4]",17.1,"The name of the training course for new baristas is **""Bean to Cup""**. This 5-day course is held at the Training Lab in head office and covers topics including coffee origins, espresso extraction, milk steaming, hygiene, and customer service (nimbus_employee_handbook.pdf, page 5)."
+4,What are the levels of latte art certificate?,True,True,"[5, 5, 5, 4]",7.2,"The levels of latte art certificates are Bronze, Silver, and Gold. (nimbus_employee_handbook.pdf, page 5)"
+4,What is the maximum temperature for steaming milk?,True,True,"[6, 5, 5, 2]",8.3,"The maximum temperature for steaming milk is 65°C. This information is found in [nimbus_employee_handbook.pdf, page 6]."
+4,Who should accidents be reported to?,True,True,"[6, 6, 6, 6]",11.1,"Accidents or injuries must be reported within 24 hours to the company safety officer, **Bilal Ahmed**, using the incident form (nimbus_employee_handbook.pdf, page 6)."
+4,Does the company offer a free gym membership?,,True,"[4, 4, 4, 5]",13.1,"I couldn't find that in your documents. The provided text mentions free drinks, food discounts, health insurance, a yearly training allowance, and an annual bonus for high-rated café teams, but it does not mention a free gym membership."
+4,What is the company's annual revenue?,,True,"[4, 3, 4, 4]",12.5,"I couldn't find that in your documents. The provided text from the Nimbus Coffee Co. Employee Handbook contains information about leave policies, pay dates, training allowances, and bonuses, but it does not mention the company's annual revenue."
+4,What is the capital of Australia?,,True,"[1, 1, 1, 5]",3.3,I couldn't find that in your documents.

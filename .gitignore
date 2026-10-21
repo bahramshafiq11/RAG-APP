@@ -14,5 +14,14 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Your personal PDFs (remove this line if you want to include sample PDFs)
+# Your personal PDFs
 *.pdf
+
+# Keep the sample PDF (the ! means "except this")
+!sample_docs/*.pdf
+
+# Saved document data (contains the text of your PDFs)
+saved_index/
+
+# Your personal slider settings
+settings.json

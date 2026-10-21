@@ -1,0 +1,92 @@
+{
+  "instructions": "Test questions for sample_docs/nimbus_employee_handbook.pdf. expected_pages = the page(s) where the answer is. expected_keywords = short words or numbers a correct answer must contain. not_in_document: true means the PDF does not answer it, so the AI should say it couldn't find it. To test your own PDF, replace these with questions about it.",
+  "questions": [
+    {
+      "question": "In which year was Nimbus Coffee Co. founded?",
+      "expected_pages": [1],
+      "expected_keywords": ["2011"]
+    },
+    {
+      "question": "Who founded the company?",
+      "expected_pages": [1],
+      "expected_keywords": ["Sara", "Omar"]
+    },
+    {
+      "question": "How many cafés does the company run?",
+      "expected_pages": [1],
+      "expected_keywords": ["14"]
+    },
+    {
+      "question": "Where is the company's roastery?",
+      "expected_pages": [1],
+      "expected_keywords": ["Rawalpindi"]
+    },
+    {
+      "question": "What app do staff use to clock in and out?",
+      "expected_pages": [2],
+      "expected_keywords": ["BrewTime"]
+    },
+    {
+      "question": "What time does the evening shift finish?",
+      "expected_pages": [2],
+      "expected_keywords": ["10"]
+    },
+    {
+      "question": "How many days of paid annual leave do full-time employees get?",
+      "expected_pages": [3],
+      "expected_keywords": ["18"]
+    },
+    {
+      "question": "How long is parental leave for the primary caregiver?",
+      "expected_pages": [3],
+      "expected_keywords": ["16"]
+    },
+    {
+      "question": "On which day of the month are salaries paid?",
+      "expected_pages": [4],
+      "expected_keywords": ["25"]
+    },
+    {
+      "question": "What discount do staff get on food and drinks?",
+      "expected_pages": [4],
+      "expected_keywords": ["30"]
+    },
+    {
+      "question": "Which company provides health insurance?",
+      "expected_pages": [4],
+      "expected_keywords": ["CareFirst"]
+    },
+    {
+      "question": "What is the name of the training course for new baristas?",
+      "expected_pages": [5],
+      "expected_keywords": ["Bean to Cup"]
+    },
+    {
+      "question": "What are the levels of latte art certificate?",
+      "expected_pages": [5],
+      "expected_keywords": ["Bronze", "Silver", "Gold"]
+    },
+    {
+      "question": "What is the maximum temperature for steaming milk?",
+      "expected_pages": [6],
+      "expected_keywords": ["65"]
+    },
+    {
+      "question": "Who should accidents be reported to?",
+      "expected_pages": [6],
+      "expected_keywords": ["Bilal"]
+    },
+    {
+      "question": "Does the company offer a free gym membership?",
+      "not_in_document": true
+    },
+    {
+      "question": "What is the company's annual revenue?",
+      "not_in_document": true
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "not_in_document": true
+    }
+  ]
+}
